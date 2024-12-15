@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.github.jmeq17.mbglearn.mybatis3simple.mapper.StudentMapper">
+  <resultMap id="BaseResultMap" type="io.github.jmeq17.mbglearn.mybatis3simple.entity.Student">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="gender" jdbcType="CHAR" property="gender" />
+    <result column="class" jdbcType="VARCHAR" property="class_" />
+    <result column="enrollment_date" jdbcType="DATE" property="enrollmentDate" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from student
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="io.github.jmeq17.mbglearn.mybatis3simple.entity.Student" useGeneratedKeys="true">
+    insert into student (name, age, gender, 
+      class, enrollment_date)
+    values (#{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{gender,jdbcType=CHAR}, 
+      #{class_,jdbcType=VARCHAR}, #{enrollmentDate,jdbcType=DATE})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="io.github.jmeq17.mbglearn.mybatis3simple.entity.Student">
+    update student
+    set name = #{name,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      gender = #{gender,jdbcType=CHAR},
+      class = #{class_,jdbcType=VARCHAR},
+      enrollment_date = #{enrollmentDate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, age, gender, class, enrollment_date
+    from student
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, age, gender, class, enrollment_date
+    from student
+  </select>
+</mapper>

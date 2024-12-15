@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!-- 数据库驱动 -->
+    <!-- <classPathEntry location="/path/to/mysql-connector-j-{version}.jar"/> -->
+
+    <context id="db_school_system" targetRuntime="MyBatis3Simple">
+        <!-- 配置基本信息 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库连接配置 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/db_school_system"
+                        userId="root"
+                        password="1234">
+        </jdbcConnection>
+
+        <!-- Java Model 生成配置 -->
+        <javaModelGenerator targetPackage="io.github.jmeq17.mbglearn.mybatis3simple.entity"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <!-- 覆盖现有的实体类 -->
+            <!-- <property name="overwrite" value="true"/> -->
+        </javaModelGenerator>
+
+        <!-- Mapper XML 生成配置 -->
+        <sqlMapGenerator targetPackage="io.github.jmeq17.mbglearn.mybatis3simple.mapper"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+            <!-- 覆盖现有的 XML 文件，虽然是默认行为 -->
+            <!-- <property name="overwrite" value="true"/> -->
+        </sqlMapGenerator>
+
+        <!-- Mapper 接口生成配置 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="io.github.jmeq17.mbglearn.mybatis3simple.mapper"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <!-- 覆盖现有的 Mapper 接口 -->
+            <!-- <property name="overwrite" value="true"/> -->
+        </javaClientGenerator>
+
+        <!-- 表映射配置 -->
+        <table tableName="student" domainObjectName="Student">
+            <!-- 如果有主键，配置主键 -->
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+            <!-- 学生表有 class 字段，它是 Java 关键字，不能直接映射为实体类属性名 -->
+            <columnOverride column="class" property="class_"/>
+        </table>
+    </context>
+</generatorConfiguration>

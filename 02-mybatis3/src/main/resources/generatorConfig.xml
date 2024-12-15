@@ -1,0 +1,53 @@
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="student"
+             targetRuntime="MyBatis3"
+             defaultModelType="conditional">
+
+        <!-- 注释生成器，控制注释行为 -->
+        <commentGenerator>
+            <!-- 不生成所有注释 -->
+            <property name="suppressAllComments" value="true"/>
+            <!-- 生成时间戳注释 -->
+            <property name="supressDate" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库连接配置 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/db_school_system"
+                        userId="root"
+                        password="1234"/>
+
+        <!-- 设置 Java 类型解析器 -->
+        <javaTypeResolver>
+            <!-- 使用 JSR310 的时间格式，对应 java.time 包 -->
+            <property name="useJSR310Types" value="true"/>
+        </javaTypeResolver>
+
+        <!-- Java 实体类生成器 -->
+        <javaModelGenerator targetPackage="io.github.jmeq17.mbglearn.entity"
+                            targetProject="src/main/java">
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- 设置 sql map XML 生成器 -->
+        <sqlMapGenerator targetPackage="io.github.jmeq17.mbglearn.mapper"
+                         targetProject="src/main/resources"/>
+
+        <!-- 设置 Java 客户端生成器 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="io.github.jmeq17.mbglearn.mapper"
+                             targetProject="src/main/java"/>
+
+        <!-- 设置表 -->
+        <table tableName="t_student"
+               alias="stu_alias">
+            <domainObjectRenamingRule searchString="T"/>
+            <!-- <domainObjectRenamingRule searchString="t_"/> -->
+            <columnRenamingRule searchString="name" replaceString="myname"/>
+            <columnOverride column="class" property="class_"/>
+        </table>
+    </context>
+</generatorConfiguration>
