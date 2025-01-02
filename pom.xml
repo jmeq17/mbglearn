@@ -11,6 +11,7 @@
     <modules>
         <module>01-basic-case</module>
         <module>02-mybatis3</module>
+        <module>99-gencode</module>
     </modules>
 
     <properties>
