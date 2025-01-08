@@ -40,7 +40,7 @@
                     <!-- 覆盖已有 Java 文件 -->
                     <overwrite>true</overwrite>
                     <!-- 指定 MBG 配置文件 -->
-                    <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
+                    <configurationFile>src/main/resources/db_library_manager_sys.xml</configurationFile>
                 </configuration>
             </plugin>
         </plugins>
